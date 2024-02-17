@@ -9,11 +9,15 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const { title }: { title: string } = await request.json();
+  const requestJson = await request.json();
+  const requestJson2 = requestJson;
+  const { title }: { title: string } = requestJson;
+  const { contents }: { contents: string } = requestJson2;
 
   const response = await prisma.todo.create({
     data: {
       title,
+      contents,
     },
   });
 
